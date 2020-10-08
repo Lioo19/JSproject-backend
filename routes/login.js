@@ -41,7 +41,7 @@ function login(res, body) {
         });
     }
 
-    db.get("SELECT password FROM users WHERE email = ?",
+    db.get("SELECT password, balance, username FROM users WHERE email = ?",
         email, (err, row) => {
             if (err) {
                 return status404();
@@ -64,6 +64,8 @@ function login(res, body) {
                             type: "success",
                             msg: "User successfully logged in",
                             user: email,
+                            username: row.username,
+                            balance: row.balance,
                             token: token
                         }
                     });

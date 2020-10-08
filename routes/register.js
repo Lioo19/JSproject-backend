@@ -14,11 +14,13 @@ router.post("/", (req, res) => {
 function register(res, body) {
     const email = body.email;
     const password = body.password;
+    const username = body.username;
 
     bcrypt.hash(password, saltRounds, function(err, hash) {
-        db.run("INSERT INTO users (email, password) VALUES (?, ?)",
+        db.run("INSERT INTO users (email, password, username) VALUES (?, ?, ?)",
             email,
-            hash, (err) => {
+            hash,
+            username, (err) => {
                 if (err) {
                     return res.status(500).json({
                         errors: {

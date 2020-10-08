@@ -10,6 +10,7 @@ const bodyParser = require("body-parser");
 
 const index = require('./routes/index');
 const marketplace = require('./routes/marketplace');
+const profile = require('./routes/profile');
 const register = require('./routes/register');
 const login = require('./routes/login');
 
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.use(cors());
 
 app.use('/marketplace', marketplace);
+app.use('/profile', profile);
 app.use('/register', register);
 app.use('/login', login);
 app.use('/', index);
