@@ -25,4 +25,4 @@ INSERT INTO objects (nr, name, latin, img, user) VALUES (4, "Monstera", "Monster
 INSERT INTO objects (nr, name, latin, img, user) VALUES (5, "Pancake Plant", "Pilea Peperomioides", "pancake-plant.jpg", "none");
 INSERT INTO objects (nr, name, latin, img, user) VALUES (6, "Snake Plant", "Dracaena trifasciata", "snakeplant.jpg", "none");
 INSERT INTO objects (nr, name, latin, img, user) VALUES (7, "Zanzibar Gem", "Zamioculcas", "zanzibar-gem.jpg", "none");
-INSERT INTO objects (nr, name, latin, img, user) VALUES (8, "Fire Croton", "Codiaeum variegatum", "croton-plant.jpg", "none");
+INSERT INTO objects (nr, name, latin, img, user) VALUES (8, "Fire Croton", "Codiaeum variegatum", "croton-plant.jpg", "test");

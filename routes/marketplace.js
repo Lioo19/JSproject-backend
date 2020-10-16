@@ -42,7 +42,6 @@ router.get('/', (req, res) => {
 router.get("/product/:nr", (req, res) => {
     db.each("SELECT name, latin, img, user FROM objects WHERE nr = " + req.params.nr,
         function(err, row) {
-            console.log(row);
             const data = {
                 data: {
                     nr: req.params.nr,
