@@ -57,81 +57,49 @@ router.get("/product/:nr", (req, res) => {
     );
 });
 
-//ROUTE AND FUNCTION FOR SELLING
-//NEEDS TO CHECK IF THE USER OWNS IT ALREADY
-// router.put("/sell/:which",
-//     (req, res, next) => checkToken(req, res, next),
-//     (req, res) => sell(res, req.body));
-//
-// function sell(res, body) {
-//     const user = "none";
-//     const name = body.name;
+//route for buying object
+router.put("/buy/:nr/",
+    (req, res, next) => checkToken(req, res, next),
+    (req, res, next) => buyObject(res, req.body, next),
+    (req, res) => updateBalance(res, req.body)
+);
 
-//continue this to check who owns the plant
-    // db.run(`SELECT * FROM objects WHERE name = ?`,
-    //     name, (err) => {
-    //         if (err) {
-    //             return res.status(500).json({
-    //                 errors: {
-    //                     status: 500,
-    //                     source: "/login",
-    //                     title: "Database error",
-    //                     detail: "Update failed"
-    //                 }
-    //             });
-    //         }
-    //     }
-//
-//     db.run(`UPDATE objects SET user = ? WHERE name = ?`,
-//         user,
-//         name, (err) => {
-//             if (err) {
-//                 return res.status(500).json({
-//                     errors: {
-//                         status: 500,
-//                         source: "/login",
-//                         title: "Database error",
-//                         detail: "Update failed"
-//                     }
-//                 });
-//             }
-//             return res.status(201).json({
-//                 data: {
-//                     msg: "Object successfully updated"
-//                 }
-//             });
-//         });
-// }
+//use objectnumber as body to sell,
+function buyObject(res, body, next) {
+    const nr = body.nr;
+    const who = body.who
 
-// router.post("/",
-//     (req, res, next) => checkToken(req, res, next),
-//     (req, res) => newpost(res, req.body));
-//
-// function newpost(res, body) {
-//     const reportId = body.reportId;
-//     const rtext = body.rtext;
-//
-//
-//     db.run("INSERT INTO reports (reportnr, reporttext) VALUES (?, ?)",
-//         reportId,
-//         rtext, (err) => {
-//             if (err) {
-//                 return res.status(500).json({
-//                     errors: {
-//                         status: 500,
-//                         source: "/login",
-//                         title: "Database error",
-//                         detail: "Rapport existerar redan"
-//                     }
-//                 });
-//             }
-//             return res.status(201).json({
-//                 data: {
-//                     msg: "Report successfully created!"
-//                 }
-//             });
-//         });
-// }
+    db.run(`UPDATE objects SET user = ? WHERE nr = ?`,
+        who,
+        nr, (err) => {
+            if (err) {
+                return error500(res);
+            }
+            next();
+        });
+}
+
+function updateBalance(res, body) {
+    const who = body.who;
+    const amount = body.amount;
+    console.log(amount);
+    console.log(who);
+
+
+    db.run(`UPDATE users SET balance = balance - ? WHERE username = ?`,
+        amount,
+        who, (err) => {
+            if (err) {
+                return error500(res);
+            }
+            return res.status(201).json({
+                data: {
+                    msg: "Object bought and balance updated"
+                }
+            });
+        });
+}
+
 
 function checkToken(req, res, next) {
     const token = req.headers['x-access-token'];
@@ -143,7 +111,7 @@ function checkToken(req, res, next) {
                     status: 500,
                     source: "/login",
                     title: "Database error",
-                    detail: "Logga in för att skapa ny post"
+                    detail: "Login first"
                 }
             });
         }

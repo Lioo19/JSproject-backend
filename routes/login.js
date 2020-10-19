@@ -18,6 +18,10 @@ try {
 
 const secret = config.secret;
 
+router.get('/', function(req, res) {
+    console.log("blepp");
+});
+
 //router for post login
 router.post("/", (req, res) => {
     login(res, req.body);
