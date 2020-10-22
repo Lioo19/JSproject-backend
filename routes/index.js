@@ -1,22 +1,30 @@
 var express = require('express');
 var router = express.Router();
 
-var h2 = `Me-sida för JSRamverk`;
-var h4 = `Välkommen till min me-sida för kursen JavaScript-baserade webbramverk, JSRamverk,
-            som ges vid Blekinge Tekniska Högskola hösten av kaosåret 2020.`;
-var p1 = `Så vem är då jag?`;
-var p2 = `Tjoppps`;
-var i1 = `Linnéa O`;
+let h1 = `Växra`;
+let headline1 = `Steg 1`;
+let box1 = `Skapa ett konto`;
+let headline2 = `Steg 2`;
+let box2 = `Sätt in medel att handla med på din profil`;
+let headline3 = `Steg 3`;
+let box3 = `Välj stickling att tradea på marknaden`;
+let headline4 = `Steg 4`;
+let box4 = `Köp köp köp!`;
+
 
 router.get('/', function(req, res) {
     const data = {
         data: {
             msg: {
-                h2: h2,
-                h4: h4,
-                p1: p1,
-                p2: p2,
-                i1: i1
+                h1: h1,
+                headline1: headline1,
+                box1: box1,
+                headline2: headline2,
+                box2: box2,
+                headline3: headline3,
+                box3: box3,
+                headline4: headline4,
+                box4: box4
             }
         }
     };

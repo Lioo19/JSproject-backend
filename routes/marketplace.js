@@ -82,9 +82,6 @@ function buyObject(res, body, next) {
 function updateBalance(res, body) {
     const who = body.who;
     const amount = body.amount;
-    console.log(amount);
-    console.log(who);
-
 
     db.run(`UPDATE users SET balance = balance - ? WHERE username = ?`,
         amount,

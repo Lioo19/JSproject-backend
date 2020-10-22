@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(255) NOT NULL,
     password VARCHAR(60) NOT NULL,
     username VARCHAR(100) NOT NULL,
-    balance INT DEFAULT(0),
+    balance REAL DEFAULT(0),
     UNIQUE(email, username)
 );
 
