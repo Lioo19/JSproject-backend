@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS objects (
     latin VARCHAR (255) NOT NULL,
     img VARCHAR (255) NOT NULL,
     user VARCHAR (255) NOT NULL,
+    boughtfor REAL,
     UNIQUE(nr)
 );
 

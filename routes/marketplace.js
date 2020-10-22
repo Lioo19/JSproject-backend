@@ -38,6 +38,22 @@ router.get('/', (req, res) => {
     );
 });
 
+//route for all objects, mostly for socket
+router.get('/all', (req, res) => {
+    const data = {};
+    db.all("SELECT * FROM objects",
+        function(err, rows) {
+            if (err) {
+                return console.error(error.message);
+            }
+            if (rows.length === 0) {
+                return res.status(status);
+            }
+            res.json(rows);
+        }
+    );
+});
+
 
 router.get("/product/:nr", (req, res) => {
     db.each("SELECT name, latin, img, user FROM objects WHERE nr = " + req.params.nr,
@@ -67,10 +83,12 @@ router.put("/buy/:nr/",
 //use objectnumber as body to sell,
 function buyObject(res, body, next) {
     const nr = body.nr;
-    const who = body.who
+    const who = body.who;
+    const amount = parseFloat(body.amount).toFixed(2);
 
-    db.run(`UPDATE objects SET user = ? WHERE nr = ?`,
+    db.run(`UPDATE objects SET user = ?, boughtfor = ? WHERE nr = ?`,
         who,
+        amount,
         nr, (err) => {
             if (err) {
                 return error500(res);

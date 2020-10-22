@@ -40,7 +40,7 @@ function login(res, body) {
                 status: 404,
                 source: "/login",
                 title: "User not found",
-                detail: "User email not found in database"
+                detail: "Användare eller lösenord felaktig"
             }
         });
     }

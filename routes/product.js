@@ -23,12 +23,12 @@ try {
 const secret = config.secret;
 
 router.get('/', function(req, res) {
-    console.log("blepp");
+    console.log("");
 });
 
 router.get("/:username", (req, res) => {
     const data = {};
-    db.all("SELECT nr, name, latin, img FROM objects WHERE user = '" + req.params.username + "'",
+    db.all("SELECT * FROM objects WHERE user = '" + req.params.username + "'",
         function(err, rows) {
             if (err) {
                 return res.status(500).json({
