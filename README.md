@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/Lioo19/JSproject-backend.svg?branch=master)](https://travis-ci.org/Lioo19/JSproject-backend)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Lioo19/JSproject-backend/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Lioo19/JSproject-backend/?branch=master)
+
 ## Available Scripts
 
 In the project directory, you can run:
