@@ -1,6 +1,3 @@
-[![Build Status](https://travis-ci.org/Lioo19/jsramverk-backend.svg?branch=master)](https://travis-ci.org/Lioo19/jsramverk-backend)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Lioo19/jsramverk-backend/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Lioo19/jsramverk-backend/?branch=master)
-
 ## Available Scripts
 
 In the project directory, you can run:
@@ -9,11 +6,9 @@ To install npm and be able to run the backend
 
 ### `npm start`
 
-Runs the backend/the API for the frontend.
-Open [http://localhost:1337](http://localhost:1337) to view it in the browser.
+#### Projekt-API
+För att bygga en solid och simpel API-tjänst har Node och Express använts som bas. De två teknologierna är solida och väldokumenterade, samt har en gedigen användarbas vilket ytterligare bidrar till dess driftsäkerhet. För att enkelt kunna läsa den data som skickas ut från databasen (skapad med SQLite) skickas data som JSON, vilket gör den enkel att läsa av och sortera bland. Jag har hittills enbart positiva upplevelser av Node och Express, de fungerar väl ihop och det är enkelt att skapa och strukturera upp routes i olika filer. 
 
+För att få en väl fungerande inloggnings- och registreringsfunktion som tar hänsyn till både användarens säkerhet samt responstid har Bcrypt använts för att kryptera användarnas lösenord och JSON Web Token (JWT) använts för att kunna verifiera inloggningen på ett säkert sätt.
 
-Valet av Node och express kändes givet jag personligen uppskattar dess simplicitet. För att kunna skapa ett API där datan är enkel att tolka föll valet på att skicka datan som JSON.
-Inloggnings och registreringsfunktionen tar hjälp av Bcrypt för att kryptera lösenorden och Json web tokens (JWT) används för att verifiera inloggningen.
-För att kunna spara och hantera användare och objekt att tradea finns två tables sparade i en sqlite-databas som även den återfinns i backenden. För att på ett enkelt sätt kunna återställa den finns filen migrate.sql som körs igenom att starta upp sqlite3 i terminalen med hjälp av kommandot sqlite3 base.sqlite i mappen db.
-För att enklare kunna navigera bland de olika funktionerna ligger de uppdelade i mappen routes. Huvudfilen är som vanligt app.js i parent-mappen.
+Databasen är, som tidigare nämnt, skapad med SQLite3 och består av två tabeller, den ena innehållandes de objekt som ska kunna tradeas och den andra bestående av användarna, deras saldo samt inloggningsuppgifter. För att på ett enkelt sätt kunna återställa databasen till sitt ursprungliga skick finns filen migrate.sql som körs igenom att starta upp sqlite3 i terminalen med hjälp av kommandot sqlite3 base.sqlite i mappen db.
