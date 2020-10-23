@@ -18,7 +18,7 @@ try {
 
 const secret = config.secret;
 
-router.get('/', function(req, res) {
+router.get('/', function() {
     console.log("blepp");
 });
 

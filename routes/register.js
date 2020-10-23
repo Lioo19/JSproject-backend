@@ -7,8 +7,8 @@ const db = require("../db/database.js");
 const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 
-router.get('/', function(req, res) {
-    console.log("blepp");
+router.get('/', function() {
+    console.log("");
 });
 
 router.post("/", (req, res) => {

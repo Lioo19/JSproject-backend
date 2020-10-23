@@ -24,11 +24,10 @@ const secret = config.secret;
 
 //route for all objects that does not belong to a user
 router.get('/', (req, res) => {
-    const data = {};
     db.all("SELECT nr, name, latin, img FROM objects WHERE user = 'none'",
         function(err, rows) {
             if (err) {
-                return console.error(error.message);
+                return console.error(err.message);
             }
             if (rows.length === 0) {
                 return res.status(status);
@@ -40,11 +39,10 @@ router.get('/', (req, res) => {
 
 //route for all objects, mostly for socket
 router.get('/all', (req, res) => {
-    const data = {};
     db.all("SELECT * FROM objects",
         function(err, rows) {
             if (err) {
-                return console.error(error.message);
+                return console.error(err.message);
             }
             if (rows.length === 0) {
                 return res.status(status);
@@ -115,6 +113,16 @@ function updateBalance(res, body) {
         });
 }
 
+function error500(res) {
+    return res.status(500).json({
+        errors: {
+            status: 500,
+            source: "/login",
+            title: "Database error",
+            detail: "Update failed"
+        }
+    });
+}
 
 function checkToken(req, res, next) {
     const token = req.headers['x-access-token'];

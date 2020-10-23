@@ -11,6 +11,7 @@ chai.should();
 const db = require("../../db/database.js");
 
 const user = {
+    username: "test",
     email: "test@test.test",
     password: "password"
 };
@@ -19,7 +20,7 @@ let token = "";
 
 chai.use(chaiHttp);
 
-describe('report_crud', () => {
+describe('profile', () => {
     before(() => {
         return new Promise((resolve) => {
             db.run("DELETE FROM users", (err) => {
@@ -47,16 +48,33 @@ describe('report_crud', () => {
     });
 });
 
-describe('PUT report', () => {
-    const putreq = {
-        reportId: "2",
-        rtext: "H"
+describe('profile', () => {
+    describe('GET /profile/test', () => {
+        it('200 HAPPY PATH', (done) => {
+            chai.request(server)
+                .get("/profile/test")
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.an("array");
+                    res.body[0].name.should.be.a("string");
+                    res.body[0].user.length.should.be.above(0);
+
+                    done();
+                });
+        });
+    });
+
+    const payload = {
+        username: "test",
+        amount: "20"
     };
 
-    const postreqfail = {
-        reportId: "678",
-        rtext: "H"
+    const payloadsell = {
+        nr: "8",
+        who: "test",
+        amount: "20"
     };
+
 
     it('successful login', (done) => {
         chai.request(server)
@@ -71,11 +89,11 @@ describe('PUT report', () => {
             });
     });
 
-    it('should get 201 for put-req when logged in', (done) => {
+    it('should get 201 for adding Currency when logged in', (done) => {
         chai.request(server)
-            .put("/reports/edit/2")
+            .put("/profile/test/addCurrency")
             .set("x-access-token", token)
-            .send(putreq)
+            .send(payload)
             .end((err, res) => {
                 res.should.have.status(201);
 
@@ -83,11 +101,11 @@ describe('PUT report', () => {
             });
     });
 
-    it('should get 500 for post-req when logged in', (done) => {
+    it('should get 201 for selling product when logged in', (done) => {
         chai.request(server)
-            .post("/reports")
+            .put("/profile/test/sell")
             .set("x-access-token", token)
-            .send(postreqfail)
+            .send(payloadsell)
             .end((err, res) => {
                 res.should.have.status(201);
 

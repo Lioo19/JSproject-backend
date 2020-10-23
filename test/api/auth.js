@@ -11,6 +11,7 @@ chai.should();
 const db = require("../../db/database.js");
 
 const user = {
+    username: "test",
     email: "test@test.test",
     password: "password"
 };

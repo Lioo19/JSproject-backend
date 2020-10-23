@@ -22,12 +22,11 @@ try {
 
 const secret = config.secret;
 
-router.get('/', function(req, res) {
+router.get('/', function() {
     console.log("");
 });
 
 router.get("/:username", (req, res) => {
-    const data = {};
     db.all("SELECT * FROM objects WHERE user = '" + req.params.username + "'",
         function(err, rows) {
             if (err) {
@@ -50,14 +49,8 @@ router.get("/:username", (req, res) => {
 
 //route for adding currency to balance
 router.put("/:username/add",
-    // (req, res, next) => checkToken(req, res, next),
-    (req, res) => addAmount(res, req.body)
-);
-
-//route for selling back to stock, make sure nr and who is mandatory (none for sale)
-router.put("/:username/buy",
     (req, res, next) => checkToken(req, res, next),
-    (req, res) => sellObject(res, req.body)
+    (req, res) => addAmount(res, req.body)
 );
 
 //use objectnumber as body to sell,
@@ -74,6 +67,25 @@ function changeObject(res, body) {
             return res.status(201).json({
                 data: {
                     msg: "Object successfully sold"
+                }
+            });
+        });
+}
+
+//make sure that body.amount and body.username is mandatory!
+function addAmount(res, body) {
+    const username = body.username;
+    const amount = body.amount;
+
+    db.run(`UPDATE users SET balance = balance + ? WHERE username = ?`,
+        amount,
+        username, (err) => {
+            if (err) {
+                return error500(res);
+            }
+            return res.status(201).json({
+                data: {
+                    msg: "Amount updated"
                 }
             });
         });

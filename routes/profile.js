@@ -23,13 +23,12 @@ try {
 const secret = config.secret;
 
 //maybe fix a nicer solution here?
-router.get('/', function(req, res) {
+router.get('/', function() {
     console.log("");
 });
 
 //getting all the products owned by user
 router.get("/:username", (req, res) => {
-    const data = {};
     db.all("SELECT * FROM objects WHERE user = '" + req.params.username + "'",
         function(err, rows) {
             if (err) {
