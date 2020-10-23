@@ -16,4 +16,6 @@ Databasen är, som tidigare nämnt, skapad med SQLite3 och består av två tabel
 
 #### Testning
 För att skapa fungerande tester för mitt projekt-API har jag valt att använda Mocha och Chai tillsammans med Istanbul. Dessa verktyg fungerar väldigt väl tillsammans, har en smidig setup och jag uppskattade deras simplicitet sist vi använde dem, i kmom04, därav föll valet på dessa. Istanbul genererar en väldigt överskådlig och lätthanterlig vy i en html-fil, vilket underlättar när man vill se vilka delar av koden testfallen faktiskt går igenom.
-Jag landade på en total kodtäckning på 86.5% vilket jag känner mig nöjd med. Jag har haft ett starkt fokus på integrationstester och framförallt sett till att testa de funktioner som kräver att man är inloggad för att de ska fungera. 
+Jag landade på en total kodtäckning på 86.5% vilket jag känner mig nöjd med. Jag har haft ett starkt fokus på integrationstester och framförallt sett till att testa de funktioner som kräver att man är inloggad för att de ska fungera.
+
+En CI-kedja har implementerats i projekt-APIet och detta har gjorts med hjälp av verktyget Travis som automatiskt kör mina tester varje gång jag uppdaterar mitt github-repo med ny information
