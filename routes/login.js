@@ -1,15 +1,11 @@
 let express = require('express');
 let router = express.Router();
-const cors = require('cors');
 
 // const sqlite3 = require('sqlite3').verbose();
 const db = require("../db/database.js");
 const bcrypt = require('bcryptjs');
 
 const jwt = require('jsonwebtoken');
-
-app.use(cors());
-
 
 let config;
 

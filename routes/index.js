@@ -1,8 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const cors = require('cors');
-
-app.use(cors());
 
 let h1 = `Växra`;
 let headline1 = `Steg 1`;

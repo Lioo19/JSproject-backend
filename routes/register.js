@@ -1,14 +1,11 @@
 let express = require('express');
 let router = express.Router();
-const cors = require('cors');
 
 // const sqlite3 = require('sqlite3').verbose();
 const db = require("../db/database.js");
 
 const bcrypt = require('bcryptjs');
 const saltRounds = 10;
-app.use(cors());
-
 
 router.get('/', function() {
     console.log("");
