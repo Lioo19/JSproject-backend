@@ -23,7 +23,7 @@ try {
 const secret = config.secret;
 
 router.get('/', function() {
-    console.log("");
+    console.log("hej");
 });
 
 //route for all objects that does not belong to a user
