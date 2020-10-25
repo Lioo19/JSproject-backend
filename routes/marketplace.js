@@ -84,7 +84,10 @@ function buyObject(res, body, next) {
     const who = body.who;
     const amount = parseFloat(body.amount).toFixed(2);
 
-    db.run(`UPDATE objects SET user = ?, boughtfor = ? WHERE nr = ?`,
+    db.run(`UPDATE objects
+                SET user = ?,
+                    boughtfor = ?
+            WHERE nr = ?`,
         who,
         amount,
         nr, (err) => {
