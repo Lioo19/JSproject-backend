@@ -88,9 +88,6 @@ function buyObject(res, body, next) {
     const who = body.who;
     const amount = parseFloat(body.amount).toFixed(2);
 
-    console.log("this is amount in buyObject in marketplace.js");
-    console.log(amount);
-
     db.run(`UPDATE objects
                 SET user = ?,
                     boughtfor = ?
