@@ -22,10 +22,6 @@ try {
 
 const secret = config.secret;
 
-router.get('/', function() {
-    console.log("hej");
-});
-
 //route for all objects that does not belong to a user
 router.get('/', (req, res) => {
     db.all("SELECT nr, name, latin, img FROM objects WHERE user = 'none'",
