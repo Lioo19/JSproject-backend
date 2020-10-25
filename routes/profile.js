@@ -44,6 +44,8 @@ router.get("/:username", (req, res) => {
             if (rows.length === 0) {
                 return res.status();
             }
+            console.log("this is profile/:username");
+            console.log(rows);
             res.json(rows);
         }
     );

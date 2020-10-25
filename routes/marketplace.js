@@ -22,6 +22,10 @@ try {
 
 const secret = config.secret;
 
+router.get('/', function() {
+    console.log("");
+});
+
 //route for all objects that does not belong to a user
 router.get('/', (req, res) => {
     db.all("SELECT nr, name, latin, img FROM objects WHERE user = 'none'",
@@ -83,6 +87,9 @@ function buyObject(res, body, next) {
     const nr = body.nr;
     const who = body.who;
     const amount = parseFloat(body.amount).toFixed(2);
+
+    console.log("this is amount in buyObject in marketplace.js");
+    console.log(amount);
 
     db.run(`UPDATE objects
                 SET user = ?,
